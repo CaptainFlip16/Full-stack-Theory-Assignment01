@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SaaS Customer Support Dashboard</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+      <div class="container-fluid">
+        <a class="navbar-brand fw-bold" href="#">SupportDesk Pro</a>
+      </div>
+    </nav>
+
+    <div class="container mt-4">
+      <div class="row mb-4">
+        <div class="col-md-4">
+          <div
+            class="card shadow-sm text-center border-primary bg-primary text-white"
+          >
+            <div class="card-body">
+              <h5 class="card-title">Open Tickets</h5>
+              <h2 id="count-open" class="display-5 fw-bold">0</h2>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div
+            class="card shadow-sm text-center border-warning bg-warning text-dark"
+          >
+            <div class="card-body">
+              <h5 class="card-title">In Progress</h5>
+              <h2 id="count-progress" class="display-5 fw-bold">0</h2>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div
+            class="card shadow-sm text-center border-success bg-success text-white"
+          >
+            <div class="card-body">
+              <h5 class="card-title">Closed Tickets</h5>
+              <h2 id="count-closed" class="display-5 fw-bold">0</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-4 mb-4">
+          <div class="card shadow-sm">
+            <div class="card-header bg-white fw-bold">
+              <h5 class="mb-0" id="form-title">Create New Ticket</h5>
+            </div>
+            <div class="card-body">
+              <form id="ticket-form">
+                <input type="hidden" id="ticket-id" />
+                <div class="mb-3">
+                  <label for="customer-name" class="form-label"
+                    >Customer Name</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="customer-name"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="issue-desc" class="form-label"
+                    >Issue Description</label
+                  >
+                  <textarea
+                    class="form-control"
+                    id="issue-desc"
+                    rows="3"
+                    required
+                  ></textarea>
+                </div>
+                <div class="mb-3">
+                  <label for="priority-level" class="form-label"
+                    >Priority</label
+                  >
+                  <select class="form-select" id="priority-level" required>
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="ticket-status" class="form-label">Status</label>
+                  <select class="form-select" id="ticket-status" required>
+                    <option value="Open">Open</option>
+                    <option value="In-Progress">In-Progress</option>
+                    <option value="Closed">Closed</option>
+                  </select>
+                </div>
+                <div class="d-grid gap-2">
+                  <button type="submit" class="btn btn-primary" id="save-btn">
+                    Save Ticket
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-outline-secondary"
+                    id="reset-btn"
+                  >
+                    Reset Form
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-8">
+          <div class="card shadow-sm mb-4">
+            <div
+              class="card-header bg-white fw-bold d-flex justify-content-between align-items-center"
+            >
+              <h5 class="mb-0">Ticket Management</h5>
+            </div>
+            <div class="card-body bg-light border-bottom">
+              <div class="row g-2">
+                <div class="col-md-6">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="search-keyword"
+                    placeholder="Search by keyword..."
+                  />
+                </div>
+                <div class="col-md-3">
+                  <select class="form-select" id="filter-priority">
+                    <option value="">All Priorities</option>
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                  </select>
+                </div>
+                <div class="col-md-3">
+                  <select class="form-select" id="filter-status">
+                    <option value="">All Statuses</option>
+                    <option value="Open">Open</option>
+                    <option value="In-Progress">In-Progress</option>
+                    <option value="Closed">Closed</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="card-body p-0">
+              <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                  <thead class="table-light">
+                    <tr>
+                      <th>ID</th>
+                      <th>Customer</th>
+                      <th>Issue</th>
+                      <th>Priority</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="ticket-list"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
